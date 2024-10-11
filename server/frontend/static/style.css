@@ -126,21 +126,24 @@ img{
 }
 
 .vertical {
-    border-left: 2px solid black;
+    border-left: 1.5px solid black;
     height: 300px;
     position: absolute;
     left: 50%;
-    margin-top: -8%;
+    margin-top: -23%;
 }
 
 .text {
     text-align: center;
-    margin-left: 25%;
-    margin-top: -8%;
+    margin-left: 50%;
+    margin-top: -23%;
 }
-.container1 {
-    border: 3px solid black;
-    padding: 50px;
-    margin: 30px;
-    width: 300px;
+.box {
+    height: 350px;
+    border: 1px solid blue;
+    border-radius: 50px;
+    width: 40%;
+    left: 30%;
+    position:relative;
+    margin-top: 0%;
 }
