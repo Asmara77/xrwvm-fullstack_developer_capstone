@@ -10,22 +10,17 @@ sentiment_analyzer_url = os.getenv('sentiment_analyzer_url', default="http://loc
 
 def get_request(endpoint, **kwargs):
     params = "&".join(f"{key}={value}" for key, value in kwargs.items())
-    if(kwargs):
-        for key,value in kwargs.items():
-            params=params+key+"="+value+"&"
-
     request_url = f"https://n4913819-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai{endpoint}?{params}"
 
-
-    print("GET from {} ".format(request_url))
+    print(f"GET from {request_url}")
     try:
-        # Call get method of requests library with URL and parameters
-        response = requests.get(request_url)
+        response = requests.get(request_url) 
         response.raise_for_status()
+        # Raise an exception for HTTP errors 
         return response.json()
     except:
-        # If any error occurs
-        print("Network exception occurred")
+        print(f"Network exception occurred") 
+    
 
 
 # def analyze_review_sentiments(text):
