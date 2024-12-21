@@ -10,7 +10,7 @@ sentiment_analyzer_url = os.getenv('sentiment_analyzer_url', default="http://loc
 
 def get_request(endpoint, **kwargs):
     params = "&".join(f"{key}={value}" for key, value in kwargs.items())
-    request_url = f"https://n4913819-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai{endpoint}?{params}"
+    request_url = "https://n4913819-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai" +endpoint+"?"+params
 
     print(f"GET from {request_url}")
     try:
@@ -38,11 +38,9 @@ def analyze_review_sentiments(text):
 
 # def post_review(data_dict):
 def post_review(data_dict):
-    request_url = f"{https://n4913819-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai}/insert_review"
-
+    request_url = "https://n4913819-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai" +"/insert_review"
     try:
         response = requests.post(request_url,json=data_dict)
-        response.raise_for_status()
         print(response.json())
         return response.json()
     except:
