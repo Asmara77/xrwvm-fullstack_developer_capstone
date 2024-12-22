@@ -10,38 +10,51 @@ sentiment_analyzer_url = os.getenv('sentiment_analyzer_url', default="http://loc
 
 def get_request(endpoint, **kwargs):
     params = "&".join(f"{key}={value}" for key, value in kwargs.items())
-    request_url = "https://n4913819-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai" +endpoint+"?"+params
+    request_url = backend_url + endpoint + "?" + params
 
     print(f"GET from {request_url}")
     try:
-        response = requests.get(request_url) 
-        response.raise_for_status()
-        # Raise an exception for HTTP errors 
+        response = requests.get(request_url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
         return response.json()
-    except:
-        print(f"Network exception occurred") 
-    
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except requests.exceptions.ConnectionError as conn_err:
+        print(f"Connection error occurred: {conn_err}")
+    except requests.exceptions.Timeout as timeout_err:
+        print(f"Timeout error occurred: {timeout_err}")
+    except Exception as err:
+        print(f"An error occurred: {err}")
 
-
-# def analyze_review_sentiments(text):
 def analyze_review_sentiments(text):
-    request_url = f"https://sentianalyzer.1pi0wntbws1j.us-south.codeengine.appdomain.cloud/analyze/{text}"
+    request_url = f"{sentiment_analyzer_url}/analyze/{text}"
 
     try:
-        # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
         response.raise_for_status()
         return response.json()
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except requests.exceptions.ConnectionError as conn_err:
+        print(f"Connection error occurred: {conn_err}")
+    except requests.exceptions.Timeout as timeout_err:
+        print(f"Timeout error occurred: {timeout_err}")
     except Exception as err:
-        print(f"Unexpected {err=}, {type(err)=}")
-        print("Network exception occurred")
+        print(f"An error occurred: {err}")
 
-# def post_review(data_dict):
 def post_review(data_dict):
-    request_url = "https://n4913819-3030.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai" +"/insert_review"
+    request_url = backend_url + "/insert_review"
+
     try:
-        response = requests.post(request_url,json=data_dict)
-        print(response.json())
+        response = requests.post(request_url, json=data_dict)
+        response.raise_for_status()  # Raise an exception for HTTP errors
         return response.json()
-    except:
-        print("Network exception occurred")
+    except requests.exceptions.HTTPError as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except requests.exceptions.ConnectionError as conn_err:
+        print(f"Connection error occurred: {conn_err}")
+    except requests.exceptions.Timeout as timeout_err:
+        print(f"Timeout error occurred: {timeout_err}")
+    except Exception as err:
+        print(f"An error occurred: {err}")
+

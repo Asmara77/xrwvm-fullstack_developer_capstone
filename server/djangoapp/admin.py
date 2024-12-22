@@ -4,13 +4,16 @@ from .models import CarMake, CarModel
 
 # Register your models here.
 
+
 # CarModelInline class
 class CarModelInline(admin.TabularInline):
     model = CarModel
     extra = 3
 
+
 class CarAdmin(admin.ModelAdmin):
     inlines = [CarModelInline]
+
 
 # CarModelAdmin class
 class CarModelAdmin(admin.ModelAdmin):
@@ -21,12 +24,16 @@ class CarModelAdmin(admin.ModelAdmin):
 
 admin.site.register(CarModel, CarModelAdmin)
 
+
 # CarMakeAdmin class with CarModelInline
 class CarMakeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     search_fields = ['name']
     inlines = [CarModelInline]
 
+
 admin.site.register(CarMake, CarMakeAdmin)
 
+
 # Register models here
+
