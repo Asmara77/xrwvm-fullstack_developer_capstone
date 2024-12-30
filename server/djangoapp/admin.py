@@ -1,19 +1,14 @@
 from django.contrib import admin
 from .models import CarMake, CarModel
 
-
-# Register your models here.
-
-
 # CarModelInline class
 class CarModelInline(admin.TabularInline):
     model = CarModel
     extra = 3
 
-
+# CarAdmin class
 class CarAdmin(admin.ModelAdmin):
     inlines = [CarModelInline]
-
 
 # CarModelAdmin class
 class CarModelAdmin(admin.ModelAdmin):
@@ -21,9 +16,7 @@ class CarModelAdmin(admin.ModelAdmin):
     list_filter = ['car_make', 'type', 'year']
     search_fields = ['name', 'car_make__name']
 
-
 admin.site.register(CarModel, CarModelAdmin)
-
 
 # CarMakeAdmin class with CarModelInline
 class CarMakeAdmin(admin.ModelAdmin):
@@ -31,9 +24,4 @@ class CarMakeAdmin(admin.ModelAdmin):
     search_fields = ['name']
     inlines = [CarModelInline]
 
-
 admin.site.register(CarMake, CarMakeAdmin)
-
-
-# Register models here
-
