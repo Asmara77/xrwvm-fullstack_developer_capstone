@@ -14,7 +14,7 @@ def initiate():
     car_make_instances = {}
     for data in car_make_data:
         car_make = CarMake.objects.create(
-            name=data['name'], 
+            name=data['name'],
             description=data['description']
         )
         car_make_instances[data['name']] = car_make
@@ -24,91 +24,91 @@ def initiate():
         {
             "name": "Pathfinder",
             "type": "SUV",
-            "year": 2023, 
+            "year": 2023,
             "car_make": "NISSAN"
         },
         {
-            "name": "Qashqai", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "Qashqai",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "NISSAN"
         },
         {
-            "name": "XTRAIL", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "XTRAIL",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "NISSAN"
         },
         {
-            "name": "A-Class", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "A-Class",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Mercedes"
         },
         {
-            "name": "C-Class", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "C-Class",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Mercedes"
         },
         {
-            "name": "E-Class", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "E-Class",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Mercedes"
         },
         {
-            "name": "A4", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "A4",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Audi"
         },
         {
             "name": "A5",
-            "type": "SUV", 
-            "year": 2023, 
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Audi"
         },
         {
-            "name": "A6", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "A6",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Audi"
         },
         {
-            "name": "Sorrento", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "Sorrento",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Kia"
         },
         {
-            "name": "Carnival", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "Carnival",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Kia"
         },
         {
-            "name": "Cerato", 
-            "type": "Sedan", 
-            "year": 2023, 
+            "name": "Cerato",
+            "type": "Sedan",
+            "year": 2023,
             "car_make": "Kia"
         },
         {
             "name": "Corolla",
-            "type": "Sedan", 
-            "year": 2023, 
+            "type": "Sedan",
+            "year": 2023,
             "car_make": "Toyota"
         },
         {
-            "name": "Camry", 
-            "type": "Sedan", 
-            "year": 2023, 
+            "name": "Camry",
+            "type": "Sedan",
+            "year": 2023,
             "car_make": "Toyota"
         },
         {
-            "name": "Kluger", 
-            "type": "SUV", 
-            "year": 2023, 
+            "name": "Kluger",
+            "type": "SUV",
+            "year": 2023,
             "car_make": "Toyota"
         },
     ]
