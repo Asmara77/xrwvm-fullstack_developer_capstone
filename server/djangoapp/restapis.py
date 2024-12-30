@@ -6,30 +6,36 @@ from dotenv import load_dotenv
 load_dotenv()
 
 backend_url = os.getenv('BACKEND_URL', default="http://localhost:3030") 
-sentiment_analyzer_url = os.getenv('SENTIMENT_ANALYZER_URL', default="http://localhost:5050")
+sentiment_analyzer_url = os.getenv('SENTIMENT_ANALYZER_URL', 
+                                   default="http://localhost:5050")
+
 
 def get_request(endpoint, **kwargs):
     params = "&".join(f"{key}={value}" for key, value in kwargs.items())
-    if(kwargs):
+    if kwargs:
         for key, value in kwargs.items():
             params += f"{key}={value}&"
 
-    request_url = "https://n4913819-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai" +endpoint+"?"+params
+    request_url = (
+        "https://n4913819-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01."
+        "proxy.cognitiveclass.ai" + endpoint + "?" + params
+    )
 
     print(f"GET from {request_url}")
     try:
-        # Call get method of requests library with URL and parameters
         response = requests.get(request_url)
         response.raise_for_status()  # Raise HTTPError for bad responses (4xx and 5xx)
         return response.json()
     except requests.exceptions.RequestException as e:
-        # Catch all request exceptions and print the error
         print(f"Network exception occurred: {e}")
         return None
 
 
 def analyze_review_sentiments(text):
-    request_url = "https://sentianalyzer.1pi0wntbws1j.us-south.codeengine.appdomain.cloud/"+"analyze/{text}"
+    request_url = (
+        "https://sentianalyzer.1pi0wntbws1j.us-south.codeengine.appdomain.cloud/"
+        "analyze/{text}"
+    )
 
     try:
         response = requests.get(request_url)
@@ -44,13 +50,16 @@ def analyze_review_sentiments(text):
     except Exception as err:
         print(f"An error occurred: {err}")
 
+
 def post_review(data_dict):
-    request_url = "https://n4913819-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai"+"/insert_review"
+    request_url = (
+        "https://n4913819-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01."
+        "proxy.cognitiveclass.ai/insert_review"
+    )
     try:
-        response = requests.post(request_url,json=data_dict)
+        response = requests.post(request_url, json=data_dict)
         response.raise_for_status()
         print(response.json())
         return response.json()
-    except:
-        print("Network exception occurred")
-
+    except requests.exceptions.RequestException as e:
+        print(f"Network exception occurred: {e}")
