@@ -108,7 +108,7 @@ def get_dealerships(request, state="All"):
     return JsonResponse({"status": 200, "dealers": dealerships})
 
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
- 
+
 
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
@@ -147,10 +147,9 @@ def add_review(request):
             return JsonResponse({"status": 200})
         except Exception as e:
             return JsonResponse({
-                "status": 401, 
+                "status": 401,
                 "message": f"Error in posting review: {e}"
             })
     else:
-        return JsonResponse({"status": 403, "message": "Unauthorized"})
-
-
+       return JsonResponse({"status": 403, "message": "Unauthorized"})
+       
