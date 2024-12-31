@@ -143,7 +143,7 @@ def add_review(request):
         data = json.loads(request.body)
         try:
             response = post_review(data)
-            # utilize the response if needed
+            # Utilize the response if needed
             return JsonResponse({"status": 200})
         except Exception as e:
             return JsonResponse({
@@ -151,5 +151,5 @@ def add_review(request):
                 "message": f"Error in posting review: {e}"
             })
     else:
-       return JsonResponse({"status": 403, "message": "Unauthorized"})
-       
+        return JsonResponse({"status": 403, "message": "Unauthorized"})
+      
