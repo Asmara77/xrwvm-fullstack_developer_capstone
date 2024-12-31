@@ -63,9 +63,13 @@ def registration(request):
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username,
-        first_name=first_name,
-        last_name=last_name,password=password, email=email)
+        user = User.objects.create_user(
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            password=password,
+            email=email
+        )
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
@@ -91,7 +95,9 @@ def get_cars(request):
     return JsonResponse({"CarModels": cars})
 
 
-# Update the `get_dealerships` render list of dealerships all, particular state if state is passed
+# Update the `get_dealerships` render list of 
+# dealerships all, particular state if state is passed
+
 def get_dealerships(request, state="All"):
     if state != "All":
         endpoint = f"/fetchDealers/{state}"
@@ -118,6 +124,7 @@ def get_dealer_reviews(request, dealer_id):
 
 # Create a `get_dealer_details` view to render the dealer details
 
+
 def get_dealer_details(request, dealer_id):
     if (dealer_id):
         endpoint = f"/fetchDealer/{dealer_id}"
@@ -127,6 +134,7 @@ def get_dealer_details(request, dealer_id):
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
 # Create an `add_review` view to submit a review
+
 
 def add_review(request):
     if not request.user.is_anonymous:
@@ -138,5 +146,6 @@ def add_review(request):
             return JsonResponse({"status": 401, "message": f"Error in posting review: {e}"})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
+
 
         
