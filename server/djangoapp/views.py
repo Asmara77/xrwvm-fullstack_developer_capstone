@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 
 # Create a `login_request` view to handle sign in request
 
+
 @csrf_exempt
 def login_user(request):
     # Get username and password from request.POST dictionary
@@ -95,7 +96,7 @@ def get_cars(request):
     return JsonResponse({"CarModels": cars})
 
 
-# Update the `get_dealerships` render list of 
+# Update the `get_dealerships` render list of
 # dealerships all, particular state if state is passed
 
 def get_dealerships(request, state="All"):
@@ -107,6 +108,7 @@ def get_dealerships(request, state="All"):
     return JsonResponse({"status": 200, "dealers": dealerships})
 
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
+ 
 
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
@@ -141,11 +143,14 @@ def add_review(request):
         data = json.loads(request.body)
         try:
             response = post_review(data)
+            # utilize the response if needed
             return JsonResponse({"status": 200})
         except Exception as e:
-            return JsonResponse({"status": 401, "message": f"Error in posting review: {e}"})
+            return JsonResponse({
+                "status": 401, 
+                "message": f"Error in posting review: {e}"
+            })
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
 
 
-        
