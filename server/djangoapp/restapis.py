@@ -24,7 +24,7 @@ def get_request(endpoint, **kwargs):
     print(f"GET from {request_url}")
     try:
         response = requests.get(request_url)
-        response.raise_for_status()  # Raise HTTPError for bad responses (4xx and 5xx)
+        response.raise_for_status()#Raise HTTPError for bad responses(4xx, 5xx)
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"Network exception occurred: {e}")
@@ -33,8 +33,8 @@ def get_request(endpoint, **kwargs):
 
 def analyze_review_sentiments(text):
     request_url = (
-        "https://sentianalyzer.1pi0wntbws1j.us-south.codeengine.appdomain.cloud/"
-        "analyze/{text}"
+        "https://sentianalyzer.1pi0wntbws1j.us-south.codeengine."
+        "appdomain.cloud/analyze/{text}"
     )
 
     try:
